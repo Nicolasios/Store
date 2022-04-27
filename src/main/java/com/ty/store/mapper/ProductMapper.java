@@ -1,9 +1,11 @@
 package com.ty.store.mapper;
 
 import com.ty.store.entity.Product;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface ProductMapper {
     /**
      * 查询热销商品的名称

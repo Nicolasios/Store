@@ -1,11 +1,13 @@
 package com.ty.store.mapper;
 
 import com.ty.store.entity.Address;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
 
+@Mapper
 public interface AddressMapper {
     /**
      * 插入收货地址数据
