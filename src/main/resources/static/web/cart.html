@@ -275,8 +275,8 @@
 				})
 			});
 			$(document).ready(function() {
-    showCartList();
-});
+    			showCartList();
+			});
 
 function showCartList() {
     $("#cart-list").empty();
@@ -286,10 +286,13 @@ function showCartList() {
         dataType: "JSON",
         success: function(json) {
             let list = json.data;
+            let allCount = 0;
+            let allPrice = 0;
             for (let i = 0; i < list.length; i++) {
+
                 let tr = '<tr>'
                 + '<td>'
-                + 	'<input name="cids" value="#{cid}" type="checkbox" class="ckitem" />'
+                + 	'<input name="cids" value="#{cid}" type="checkbox" class="ckitem" onchange="OnCheckBox(this,#{totalPrice},#{num})"/>'
                 + '</td>'
                 + '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
                 + '<td>#{title}#{msg}</td>'
@@ -317,7 +320,12 @@ function showCartList() {
                     tr = tr.replace(/#{msg}/g, "");
                 }
                 $("#cart-list").append(tr);
+                allCount += list[i].num;
+                allPrice += list[i].realPrice * list[i].num;
             }
+<!--            $("#selectCount").html(allCount);-->
+<!--            $("#selectTotal").html(allPrice);-->
+
         }
     });
     };
@@ -342,7 +350,24 @@ function addNum(cid) {
             location.href = "login.html";
         }
     });
-}
+};
+	function OnCheckBox(e,price,num)
+	{
+		let nowNum = parseInt(document.getElementById("selectCount").innerText);
+		let nowTotal = parseInt(document.getElementById("selectTotal").innerText);
+
+		if(e.checked == true){
+			nowNum += num;
+			nowTotal += price;
+<!--			alert(nowNum);-->
+		}else{
+			nowNum -= num;
+			nowTotal -= price;
+		}
+		$("#selectCount").html(nowNum);
+		$("#selectTotal").html(nowTotal);
+
+	};
 		</script>
 	</body>
 

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -98,5 +99,13 @@ public class CartServiceImpl implements ICartService {
 
         // 返回新的数量
         return num;
+    }
+
+    @Override
+    public List<CartVO> getVOByCids(Integer uid, Integer[] cids) {
+        List<CartVO> list = cartMapper.findVOByCids(cids);
+
+        list.removeIf(cart -> !cart.getUid().equals(uid));
+        return list;
     }
 }

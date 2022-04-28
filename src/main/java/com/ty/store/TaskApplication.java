@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class TaskApplication {
 
-    private static Logger logger = LoggerFactory.getLogger(TaskApplication.class);
+//    private static Logger logger = LoggerFactory.getLogger(TaskApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(TaskApplication.class, args);
-        logger.info("定时任务页面管理地址:{}", "http://localhost:8080/scheduled/task/taskList");
+//        logger.info("定时任务页面管理地址:{}", "http://localhost:8080/scheduled/task/taskList");
     }
 }
